@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+</head>
+<body>
+	<form id="myForm">
+		<label for="URL">Name:</label>
+		<input type="text" id="name" name="name"><br>
+
+
+
+		<input type="button" value="Submit" onclick="submitForm()">
+	</form>
+
+	<script>
+		function submitForm() {
+			var form = document.getElementById("myForm");
+			var name = form.elements["name"].value;
+			// var age = form.elements["age"].value;
+
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "/submit-form", true);
+			xhr.setRequestHeader("Content-Type", "application/json");
+
+			// xhr.onreadystatechange = function () {
+			// 	if (xhr.readyState === 4 && xhr.status === 200) {
+			// 		var response = JSON.parse(xhr.responseText);
+			// 		alert(response.message);
+			// 		form.reset();
+			// 	}
+			// };
+
+			var data = JSON.stringify({ "name": name});
+			xhr.send(data);
+		}
+	</script>
+</body>
+</html>
